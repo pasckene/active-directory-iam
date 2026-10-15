@@ -9,7 +9,7 @@
 
 > **Project objective:** Design, implement, and validate an enterprise-inspired Active Directory IAM solution that demonstrates practical identity administration, role-based authorization, least-privilege enforcement, identity lifecycle management, and security configuration validation.
 
-**Author:** Zyra  
+**Author:** Paschal Emechebe 
 **Environment:** AWS · Windows Server 2019 Datacenter · Active Directory Domain Services  
 **Repository:** `active-directory-iam`
 
@@ -28,15 +28,7 @@
 9. [Resource Authorization and Least Privilege](#9-resource-authorization-and-least-privilege)
 10. [Authentication and Security Policies](#10-authentication-and-security-policies)
 11. [Privileged Access Management](#11-privileged-access-management)
-12. [PowerShell Automation](#12-powershell-automation)
-13. [Validation and Acceptance Testing](#13-validation-and-acceptance-testing)
-14. [Evidence Gallery](#14-evidence-gallery)
-15. [Operational Runbooks](#15-operational-runbooks)
-16. [Repository Structure](#16-repository-structure)
-17. [Security Considerations](#17-security-considerations)
-18. [Implementation Status](#18-implementation-status)
-19. [Engineering Decisions and Lessons Learned](#19-engineering-decisions-and-lessons-learned)
-20. [Future Improvements](#20-future-improvements)
+12. [PowerShell Automation](#12-powershell-automation) 
 
 ---
 
@@ -73,7 +65,7 @@ The screenshots and test records in this repository will document actual impleme
 
 ![Active Directory IAM project overview](images/Active%20Directory%20IAM%20Project%20Overview.png)
 
-*Figure 1 — Planned evidence: a sanitized overview of the completed lab architecture and major IAM components. Capture this after the relevant components have been implemented and verified.*
+*a sanitized overview of the completed lab architecture and major IAM components. Capture this after the relevant components have been implemented and verified.*
 
 ---
 
@@ -145,13 +137,13 @@ These values reflect the previously reported lab configuration and remain subjec
 
 ### Environment evidence
 
-![Active Directory domain configuration](evidence/screenshots/02-domain-configuration.png)
+![Active Directory domain configuration](images/get-domain.png)
 
-*Figure 2 — Placeholder: capture the verified domain properties and domain-controller identity. Redact sensitive infrastructure details where appropriate.*
+*capture the verified domain properties and domain-controller identity. Redact sensitive infrastructure details where appropriate.*
 
-![Active Directory Users and Computers](evidence/screenshots/03-active-directory-console.png)
+![Active Directory Users and Computers](images/aduc-baseline.png)
 
-*Figure 3 — Placeholder: show the existing directory structure in Active Directory Users and Computers before making changes.*
+*show the existing directory structure in Active Directory Users and Computers before making changes.*
 
 **Evidence requirement:** Record the command or administrative view used, the date of validation, and any relevant configuration discrepancy. Do not include passwords, private keys, access tokens, or unnecessary personal information.
 
@@ -194,9 +186,9 @@ flowchart TD
 
 ### Architecture evidence
 
-![IAM architecture implementation](evidence/screenshots/04-iam-architecture.png)
+![IAM architecture implementation](images/Active-Directory-IAM-Architecture-Diagram.png)
 
-*Figure 4 — Placeholder: include a rendered architecture diagram or a sanitized view of the implemented directory and resource-access design.*
+*include a rendered architecture diagram or a sanitized view of the implemented directory and resource-access design.*
 
 ---
 
@@ -248,13 +240,13 @@ Naming conventions will be finalized after inspecting the existing environment.
 
 ### Directory evidence
 
-![OU hierarchy](evidence/screenshots/05-ou-hierarchy.png)
+![OU hierarchy](images/aduc-ou.png)
 
-*Figure 5 — Placeholder: show the implemented OU hierarchy with the relevant distinguished names verified.*
+*show the implemented OU hierarchy with the relevant distinguished names verified.*
+![Group membership](images/aduc-users.png)
+![Group membership](images/pwsh-users-and-groups.png)
 
-![Group membership](evidence/screenshots/06-group-membership.png)
-
-*Figure 6 — Placeholder: demonstrate a fictional test user's verified group memberships.*
+*demonstrate a fictional test user's verified group memberships.*
 
 ---
 
@@ -283,7 +275,7 @@ A domain administrator's technical capability does not justify using that accoun
 ### 7.2 Group design example
 
 ```text
-jane.doe
+David.Okafor
     |
     v
 GG_IT_Staff
@@ -299,13 +291,13 @@ This diagram illustrates the proposed design only. It does not establish that th
 
 ### RBAC evidence
 
-![RBAC group nesting](evidence/screenshots/07-rbac-group-nesting.png)
+![RBAC group nesting](images/rbac-groups.png)
 
-*Figure 7 — Placeholder: show verified membership between the relevant global and domain local groups.*
+*show verified membership between the relevant global and domain local groups.*
 
-![Resource ACL](evidence/screenshots/08-resource-acl.png)
+![Resource ACL](images/rbac-acl.png)
 
-*Figure 8 — Placeholder: show the resource ACL entries that reference the intended resource-access groups.*
+*show the resource ACL entries that reference the intended resource-access groups.*
 
 ---
 
@@ -342,13 +334,15 @@ flowchart TD
 
 ### Lifecycle evidence
 
-![Account provisioning](evidence/screenshots/09-user-provisioning.png)
+![Account provisioning](images/prov1.png)
+![Account provisioning](images/prov2.png)
 
-*Figure 9 — Placeholder: demonstrate the creation of a fictional test identity and verification of its directory attributes.*
+*demonstrate the creation of a fictional test identity and verification of its directory attributes.*
 
-![Account lifecycle](evidence/screenshots/10-account-disablement.png)
+![Account lifecycle](images/disable1.png)
+![Account lifecycle](images/disable2.png)
 
-*Figure 10 — Placeholder: show the verified account state after disablement. Do not use a screenshot as the sole proof that authentication is denied.*
+*show the verified account state after disablement. Do not use a screenshot as the sole proof that authentication is denied.*
 
 ---
 
@@ -379,21 +373,21 @@ These are expected outcomes, not completed test results.
 
 ### Resource access evidence
 
-![Share permissions](evidence/screenshots/11-smb-share-permissions.png)
+![Share permissions](images/smb-share-permision.png)
 
-*Figure 11 — Placeholder: capture verified SMB share permissions.*
+*capture verified SMB share permissions.*
 
-![NTFS permissions](evidence/screenshots/12-ntfs-permissions.png)
+![NTFS permissions](images/ntfs.png)
 
-*Figure 12 — Placeholder: capture verified NTFS ACL entries for the test resource.*
+*capture verified NTFS ACL entries for the test resource.*
 
 ![Authorized access test](evidence/screenshots/13-authorized-access.png)
 
-*Figure 13 — Placeholder: show an actual successful access test using the intended domain test account.*
+*show an actual successful access test using the intended domain test account.*
 
 ![Unauthorized access test](evidence/screenshots/14-unauthorized-access.png)
 
-*Figure 14 — Placeholder: show an actual denied-access result for a user who is not authorized for the resource.*
+*show an actual denied-access result for a user who is not authorized for the resource.*
 
 Record the test account's intended role, relevant group memberships, resource path, test time, observed outcome, and any necessary session or credential refresh. Avoid publishing passwords or sensitive personal data.
 
@@ -417,13 +411,13 @@ A linked GPO is not proof that a setting is effective. Validation will include r
 
 ### Policy evidence
 
-![Domain password policy](evidence/screenshots/15-password-policy.png)
+![Domain password policy](images/passwordpolicy.png)
 
-*Figure 15 — Placeholder: capture the verified domain password and lockout policy settings.*
+*capture the verified domain password and lockout policy settings.*
 
-![Resultant Group Policy](evidence/screenshots/16-resultant-group-policy.png)
+![Resultant Group Policy](images/gpopolicy.png)
 
-*Figure 16 — Placeholder: capture verified resultant policy information from the relevant test computer or user.*
+*capture verified resultant policy information from the relevant test computer or user.*
 
 ---
 
@@ -444,9 +438,9 @@ The project will not claim to implement enterprise privileged access management 
 
 ### Privileged access evidence
 
-![Privileged group review](evidence/screenshots/17-privileged-membership-review.png)
+![Privileged group review](images/priv10.png)
 
-*Figure 17 — Placeholder: show a sanitized review of privileged group membership and documented remediation where applicable.*
+*show a sanitized review of privileged group membership and documented remediation where applicable.*
 
 ---
 
@@ -468,215 +462,13 @@ Scripts will avoid hardcoded secrets, use explicit inputs, and incorporate dry-r
 
 ### Automation evidence
 
-![PowerShell provisioning output](evidence/screenshots/18-powershell-provisioning.png)
+![PowerShell provisioning output](images/script1.png)
 
-*Figure 18 — Placeholder: capture actual provisioning output and a subsequent query verifying the resulting account state.*
+*capture actual provisioning output and a subsequent query verifying the resulting account state.*
 
-![PowerShell validation output](evidence/screenshots/19-powershell-validation.png)
+![PowerShell validation output](images/valida.png)
 
-*Figure 19 — Placeholder: show actual validation output, including any detected discrepancies.*
-
----
-
-## 13. Validation and Acceptance Testing
-
-Acceptance testing will determine whether the implementation meets the documented requirements.
-
-Each test will include:
-
-- Test ID.
-- Objective and prerequisites.
-- Procedure.
-- Expected result.
-- Actual result.
-- Evidence reference.
-- Pass/fail status.
-- Remediation where required.
-
-### Initial acceptance-test register
-
-| ID | Test objective | Status |
-|---|---|---|
-| IAM-001 | Create a user and verify OU placement | Not run |
-| IAM-002 | Verify approved role-group memberships | Not run |
-| IAM-003 | Verify authorized resource access | Not run |
-| IAM-004 | Verify unauthorized access is denied | Not run |
-| IAM-005 | Review least privilege and effective permissions | Not run |
-| IAM-006 | Disable a test account and verify authentication denial | Not run |
-| IAM-007 | Re-enable an account and verify resulting state | Not run |
-| IAM-008 | Remove obsolete access after a role change | Not run |
-| IAM-009 | Verify relevant Group Policy settings | Not run |
-| IAM-010 | Identify unintended direct ACL entries and excessive group memberships | Not run |
-
-Test statuses will be updated only after evidence is collected.
-
-### Test evidence
-
-![Acceptance test results](evidence/screenshots/20-acceptance-test-results.png)
-
-*Figure 20 — Placeholder: capture the final test report or sanitized validation summary after executing the acceptance tests.*
-
-A test will not be marked as passed solely because a PowerShell command returned without an error. The result must demonstrate the actual requirement being tested.
-
----
-
-## 14. Evidence Gallery
-
-The evidence directory will contain sanitized screenshots and supporting records that substantiate project claims.
-
-| Evidence ID | Evidence item | Status |
-|---|---|---|
-| EV-001 | Domain and DC01 configuration | Pending |
-| EV-002 | Existing and final OU hierarchy | Pending |
-| EV-003 | Verified role-group memberships | Pending |
-| EV-004 | Resource share and NTFS permissions | Pending |
-| EV-005 | Authorized access test | Pending |
-| EV-006 | Unauthorized access test | Pending |
-| EV-007 | Account disablement validation | Pending |
-| EV-008 | Effective Group Policy | Pending |
-| EV-009 | Privileged membership review | Pending |
-| EV-010 | Final acceptance-test report | Pending |
-
-### Evidence standards
-
-Each evidence item should:
-
-1. Correspond to a documented requirement or test.
-2. Show the relevant configuration or observed outcome.
-3. Include enough context to understand what is being demonstrated.
-4. Be linked to its test ID or documentation section.
-5. Be genuine and captured from the lab.
-6. Be sanitized before publication.
-
-The placeholder paths in this README are not evidence of completed implementation. Replace each placeholder with a genuine screenshot when the corresponding activity has been performed.
-
----
-
-## 15. Operational Runbooks
-
-The project will document repeatable procedures for:
-
-- Employee onboarding.
-- Access requests and approvals.
-- Department and role changes.
-- Account disablement and re-enablement.
-- Offboarding.
-- Group membership reviews.
-- Privileged-account administration.
-- Resource-access troubleshooting.
-- Account recovery.
-- Configuration rollback and recovery.
-
-Each runbook will identify prerequisites, required privileges, execution steps, validation commands, expected outcomes, failure handling, and rollback considerations.
-
----
-
-## 16. Repository Structure
-
-```text
-active-directory-iam/
-├── README.md
-├── docs/
-│   ├── requirements.md
-│   ├── architecture.md
-│   ├── ou-design.md
-│   ├── rbac-model.md
-│   ├── identity-lifecycle.md
-│   ├── security-hardening.md
-│   ├── test-plan.md
-│   ├── operational-runbooks.md
-│   └── lessons-learned.md
-├── diagrams/
-│   ├── architecture.mmd
-│   └── identity-lifecycle.mmd
-├── scripts/
-│   ├── users/
-│   ├── groups/
-│   ├── permissions/
-│   ├── auditing/
-│   └── validation/
-├── tests/
-│   ├── identity-tests.md
-│   ├── access-control-tests.md
-│   └── policy-validation.md
-├── evidence/
-│   ├── README.md
-│   └── screenshots/
-└── .gitignore
-```
-
-Only files that contain meaningful documentation, scripts, or evidence will be committed. The repository will evolve with the implementation.
-
----
-
-## 17. Security Considerations
-
-- Use fictional identities for demonstrations.
-- Never commit passwords, tokens, private keys, or credentials.
-- Review screenshots and command output for sensitive infrastructure information.
-- Inspect existing directory configuration before making changes.
-- Back up relevant configuration before risky operations.
-- Use dry-run modes and explicit confirmation for destructive operations.
-- Separate administrative privileges from ordinary user activity.
-- Document exceptions to the approved access model.
-- Record limitations and unresolved issues honestly.
-- Ensure public documentation does not expose information unnecessary to reproduce the project.
-
----
-
-## 18. Implementation Status
-
-**Current phase:** Initial discovery and architecture validation.
-
-| Component | Current status |
-|---|---|
-| Existing AWS AD lab | Reported available; discovery pending |
-| IAM requirements | Proposed; final approval pending |
-| OU architecture | Proposed; reconciliation pending |
-| RBAC and group nesting | Proposed; implementation pending |
-| Resource permissions | Requires inspection and testing |
-| Identity lifecycle automation | Planned |
-| Authentication policies | Requires verification |
-| Privileged access review | Requires verification |
-| Acceptance testing | Not run |
-| Evidence gallery | Placeholders only |
-| Public release | Not ready |
-
-This status table will be updated as each component is implemented and validated. Proposed architecture is not equivalent to a deployed control.
-
----
-
-## 19. Engineering Decisions and Lessons Learned
-
-This section will record evidence-backed engineering decisions as the project progresses.
-
-For each significant decision, the documentation will explain:
-
-- The problem or requirement.
-- The available alternatives.
-- The selected approach.
-- The security and operational rationale.
-- The validation method.
-- Any trade-offs or limitations.
-
-Examples include the selection of an OU structure, group-nesting strategy, resource permission model, administrative delegation boundaries, and PowerShell safeguards.
-
-Lessons learned will be based on actual configuration issues, troubleshooting, test failures, and verified remediation outcomes.
-
----
-
-## 20. Future Improvements
-
-Potential extensions after the IAM foundation passes acceptance testing include:
-
-- Active Directory security monitoring.
-- Wazuh integration and identity-related alerting.
-- Detection engineering for suspicious authentication and privilege changes.
-- Automated access-review reporting.
-- Additional workstation and server Group Policy baselines.
-- More advanced privileged-access controls where supported by the available infrastructure.
-
-These are future enhancements, not deliverables of the current IAM release.
+*show actual validation output, including any detected discrepancies.* 
 
 ---
 
