@@ -71,7 +71,7 @@ The screenshots and test records in this repository will document actual impleme
 
 ### Project overview evidence
 
-![Active Directory IAM project overview](images/Active\ Directory\ IAM\ Project\ Overview.png)
+![Active Directory IAM project overview](images/Active%20Directory%20IAM%20Project%20Overview.png)
 
 *Figure 1 — Planned evidence: a sanitized overview of the completed lab architecture and major IAM components. Capture this after the relevant components have been implemented and verified.*
 
