@@ -415,7 +415,3 @@ The script library will be developed incrementally and will include appropriate 
 ## Conclusion
 
 This project aims to demonstrate practical IAM engineering through a structured Active Directory implementation, documented authorization decisions, safe automation, least-privilege enforcement, and evidence-based validation.
-
-The value of the project will come from showing not only how directory objects and permissions are configured, but also why they are configured that way, how the controls are tested, and what the observed results prove.
-
-**The initial release will be considered complete only when the implementation, acceptance tests, and supporting evidence substantiate the claims made in this documentation.**
