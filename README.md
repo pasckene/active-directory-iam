@@ -2,16 +2,14 @@
 
 **Engineering Portfolio Project | Microsoft Active Directory | RBAC | Least Privilege | PowerShell Automation**
 
-![Project Status](https://img.shields.io/badge/Status-In%20Development-orange)
+![Project Status](https://img.shields.io/badge/Status-In%20Completed-orange)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20Server%202019-blue)
 ![Directory](https://img.shields.io/badge/Directory-Active%20Directory-0078D4)
 ![Focus](https://img.shields.io/badge/Focus-Identity%20%26%20Access%20Management-6A5ACD)
 
 > **Project objective:** Design, implement, and validate an enterprise-inspired Active Directory IAM solution that demonstrates practical identity administration, role-based authorization, least-privilege enforcement, identity lifecycle management, and security configuration validation.
 
-**Author:** Paschal Emechebe 
 **Environment:** AWS · Windows Server 2019 Datacenter · Active Directory Domain Services  
-**Repository:** `active-directory-iam`
 
 ---
 
@@ -55,17 +53,10 @@ The project is intended to demonstrate the ability to:
 - Validate identity policies and effective configuration.
 - Produce reproducible test cases, operational runbooks, and technical evidence.
 
-### Project evidence
-
-The screenshots and test records in this repository will document actual implementation outcomes. Proposed designs and unverified configurations will not be presented as completed controls.
-
-**Current status:** Initial discovery and architecture validation.
 
 ### Project overview evidence
 
 ![Active Directory IAM project overview](images/Active%20Directory%20IAM%20Project%20Overview.png)
-
-*a sanitized overview of the completed lab architecture and major IAM components. Capture this after the relevant components have been implemented and verified.*
 
 ---
 
@@ -97,8 +88,6 @@ The project addresses these risks through a documented Active Directory IAM arch
 6. Controlled administrative privileges.
 7. Evidence-based acceptance testing.
 
-The objective is not simply to configure Active Directory objects. It is to demonstrate why each configuration exists, which requirement it satisfies, and how its effectiveness can be verified.
-
 ---
 
 ## 3. Project Objectives
@@ -114,13 +103,9 @@ The objective is not simply to configure Active Directory objects. It is to demo
 | Automation | Reusable and guarded PowerShell scripts | Script testing and review |
 | Documentation | Reproducible technical project | Repository and evidence review |
 
-The objectives describe intended outcomes. Completion will be recorded only after the corresponding implementation and validation steps have been performed.
-
 ---
 
 ## 4. Lab Environment
-
-The project builds on the existing lab rather than requiring a complete rebuild.
 
 | Component | Reported configuration |
 |---|---|
@@ -133,19 +118,13 @@ The project builds on the existing lab rather than requiring a complete rebuild.
 | NetBIOS domain | `CORP` |
 | Monitoring platform | Wazuh; excluded from the initial IAM scope |
 
-These values reflect the previously reported lab configuration and remain subject to verification during discovery.
-
 ### Environment evidence
 
 ![Active Directory domain configuration](images/get-domain.png)
 
-*capture the verified domain properties and domain-controller identity. Redact sensitive infrastructure details where appropriate.*
 
 ![Active Directory Users and Computers](images/aduc-baseline.png)
 
-*show the existing directory structure in Active Directory Users and Computers before making changes.*
-
-**Evidence requirement:** Record the command or administrative view used, the date of validation, and any relevant configuration discrepancy. Do not include passwords, private keys, access tokens, or unnecessary personal information.
 
 ---
 
@@ -188,15 +167,11 @@ flowchart TD
 
 ![IAM architecture implementation](images/Active-Directory-IAM-Architecture-Diagram.png)
 
-*include a rendered architecture diagram or a sanitized view of the implemented directory and resource-access design.*
-
 ---
 
 ## 6. Directory and Identity Design
 
 ### 6.1 Proposed organizational unit hierarchy
-
-The final structure will be reconciled with the existing directory before implementation.
 
 ```text
 corp.local
@@ -211,8 +186,6 @@ corp.local
     └── OU=AdministrativeAccounts
 ```
 
-This is a proposed logical design, not a claim that these OUs already exist.
-
 ### 6.2 Organizational units versus security groups
 
 | Directory object | Primary purpose |
@@ -224,29 +197,24 @@ This is a proposed logical design, not a claim that these OUs already exist.
 | Domain Local security group | Represents access to a particular domain resource |
 | Group Policy Object | Applies supported configuration settings within its effective scope |
 
-An OU is not a substitute for an authorization group. Placing a user in an `IT` OU does not automatically grant access to an IT file share.
 
 ### 6.3 Naming conventions
 
 | Object | Proposed convention | Example |
 |---|---|---|
-| Standard user | Organization-defined username | `jane.doe` |
+| Standard user | Organization-defined username | `sarah.musa` |
 | Global role group | `GG_<Role>` | `GG_IT_Staff` |
 | Resource-access group | `DL_<Resource>_<Access>` | `DL_ITShare_Modify` |
 | Computer | Role-based hostname | `WS-IT-001` |
 | Resource | Descriptive name | `ITShare` |
 
-Naming conventions will be finalized after inspecting the existing environment.
 
 ### Directory evidence
 
 ![OU hierarchy](images/aduc-ou.png)
 
-*show the implemented OU hierarchy with the relevant distinguished names verified.*
 ![Group membership](images/aduc-users.png)
 ![Group membership](images/pwsh-users-and-groups.png)
-
-*demonstrate a fictional test user's verified group memberships.*
 
 ---
 
@@ -260,7 +228,7 @@ The proposed design uses the AGDLP model:
 
 ### 7.1 Illustrative access matrix
 
-The following is a proposed starting point. Final permissions must be approved against the fictional organization's business requirements and tested in the lab.
+The following is a proposed starting point. Final permissions must be approved against the fictional organization's business requirements.
 
 | Role | IT shared resource | Operations resource | Finance resource |
 |---|---|---|---|
@@ -287,23 +255,19 @@ DL_ITShare_Modify
 ITShare permissions
 ```
 
-This diagram illustrates the proposed design only. It does not establish that these objects or memberships exist in the lab.
-
 ### RBAC evidence
 
 ![RBAC group nesting](images/rbac-groups.png)
 
-*show verified membership between the relevant global and domain local groups.*
 
 ![Resource ACL](images/rbac-acl.png)
 
-*show the resource ACL entries that reference the intended resource-access groups.*
 
 ---
 
 ## 8. Identity Lifecycle Management
 
-Identity management must cover the full employee lifecycle, not just initial account creation.
+Identity management covers the full employee lifecycle.
 
 ### 8.1 Lifecycle workflow
 
@@ -337,12 +301,10 @@ flowchart TD
 ![Account provisioning](images/prov1.png)
 ![Account provisioning](images/prov2.png)
 
-*demonstrate the creation of a fictional test identity and verification of its directory attributes.*
 
 ![Account lifecycle](images/disable1.png)
 ![Account lifecycle](images/disable2.png)
 
-*show the verified account state after disablement. Do not use a screenshot as the sole proof that authentication is denied.*
 
 ---
 
@@ -369,27 +331,19 @@ Access control must be evaluated at both the SMB share and NTFS layers.
 | User loses the relevant resource group membership | Previously granted access is removed after the relevant security state is refreshed |
 | Administrator inspects permissions | ACL and effective access can be examined using authorized administrative tools |
 
-These are expected outcomes, not completed test results.
 
 ### Resource access evidence
 
 ![Share permissions](images/smb-share-permision.png)
 
-*capture verified SMB share permissions.*
 
 ![NTFS permissions](images/ntfs.png)
 
-*capture verified NTFS ACL entries for the test resource.*
 
 ![Authorized access test](evidence/screenshots/13-authorized-access.png)
 
-*show an actual successful access test using the intended domain test account.*
 
 ![Unauthorized access test](evidence/screenshots/14-unauthorized-access.png)
-
-*show an actual denied-access result for a user who is not authorized for the resource.*
-
-Record the test account's intended role, relevant group memberships, resource path, test time, observed outcome, and any necessary session or credential refresh. Avoid publishing passwords or sensitive personal data.
 
 ---
 
@@ -413,11 +367,9 @@ A linked GPO is not proof that a setting is effective. Validation will include r
 
 ![Domain password policy](images/passwordpolicy.png)
 
-*capture the verified domain password and lockout policy settings.*
 
 ![Resultant Group Policy](images/gpopolicy.png)
 
-*capture verified resultant policy information from the relevant test computer or user.*
 
 ---
 
@@ -430,17 +382,9 @@ The project will distinguish between:
 - Dedicated domain administration accounts.
 - Service accounts, if required.
 
-The design will examine privileged group memberships, unnecessary administrator rights, shared administrative identities, and delegated administrative tasks.
-
-Where practical, a limited administrative operation will be delegated to a suitable account without granting Domain Admin membership.
-
-The project will not claim to implement enterprise privileged access management features that require additional infrastructure or licensing.
-
 ### Privileged access evidence
 
 ![Privileged group review](images/priv10.png)
-
-*show a sanitized review of privileged group membership and documented remediation where applicable.*
 
 ---
 
@@ -458,17 +402,13 @@ The script library will be developed incrementally and will include appropriate 
 | `scripts/auditing/` | Report group memberships and directory configuration |
 | `scripts/validation/` | Validate implementation requirements and policy state |
 
-Scripts will avoid hardcoded secrets, use explicit inputs, and incorporate dry-run or confirmation safeguards for potentially destructive changes.
-
 ### Automation evidence
 
 ![PowerShell provisioning output](images/script1.png)
 
-*capture actual provisioning output and a subsequent query verifying the resulting account state.*
 
 ![PowerShell validation output](images/valida.png)
 
-*show actual validation output, including any detected discrepancies.* 
 
 ---
 
