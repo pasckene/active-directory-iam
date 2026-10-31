@@ -119,7 +119,7 @@ The project addresses these risks through a documented Active Directory IAM arch
 | Monitoring platform | Wazuh; excluded from the initial IAM scope |
 
 ### Environment evidence
-
+![Active Directory domain configuration](images/Ad-start.png)
 ![Active Directory domain configuration](images/get-domain.png)
 
 
@@ -162,10 +162,6 @@ flowchart TD
 **Controlled lifecycle:** Account creation, modification, disablement, and offboarding follow documented procedures.
 
 **Evidence-based validation:** A configured setting is not considered effective until its actual behavior or resultant configuration has been verified.
-
-### Architecture evidence
-
-![IAM architecture implementation](images/Active-Directory-IAM-Architecture-Diagram.png)
 
 ---
 
